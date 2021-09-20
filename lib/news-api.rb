@@ -5,6 +5,8 @@ require_relative './everything'
 require_relative './source'
 require_relative './exception'
 
+attr_accessor :status, :totalResults
+
 class News
     VERSION = 'v2'
     BASE_URL = 'https://newsapi.org/' + VERSION + '/'
@@ -26,7 +28,7 @@ class News
     def get_sources(**args)
         endpoint = 'sources'
         request = _make_request(endpoint, **args)
-        status = request['status']
+        @status = request['status']
         sources = request['sources']
         data = Array.new
         sources.each do |v|
@@ -72,8 +74,8 @@ class News
 
     def _get_everything(endpoint, **args)
         request = _make_request(endpoint, **args)
-        status = request['status']
-        totalResults = request['totalResults']
+        @status = request['status']
+        @totalResults = request['totalResults']
         articles = request['articles']
         data = Array.new
         articles.each do |a|
