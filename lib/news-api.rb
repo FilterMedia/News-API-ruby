@@ -5,11 +5,12 @@ require_relative './everything'
 require_relative './source'
 require_relative './exception'
 
-attr_accessor :status, :totalResults
 
 class News
     VERSION = 'v2'
     BASE_URL = 'https://newsapi.org/' + VERSION + '/'
+
+    attr_accessor :status, :totalResults
 
     def initialize(api_key)
         @api_key = api_key
